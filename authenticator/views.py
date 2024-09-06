@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from botengine.models import Bot, Log, Account
+from botengine.models import Bot, Log, Account, Song
 
 
 # Create your views here.
@@ -29,11 +29,12 @@ def dashboard(request):
     if request.user.is_authenticated:
 
         bot = Bot.objects.get(id=1)
-
+        songs = Song.objects.all()
         accounts = Account.objects.all()
 
         context = {
             "bot": bot,
+            "songs": songs,
             # "recent_logs": recent_logs,
             # "logs": logs,
             # "log_count": logs.count(),

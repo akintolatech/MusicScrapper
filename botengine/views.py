@@ -8,9 +8,9 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Recaptcha
+from .models import Recaptcha, Song
 
-from .tasks import run_music_scrape_bot
+# from .tasks import run_music_scrape_bot
 
 @csrf_exempt
 @require_POST
@@ -30,7 +30,7 @@ def change_status(request, bot_id):
             if new_status == "AE":
                 active_log = Log(log_details=f"The Bot is now active ")
                 active_log.save()
-                run_music_scrape_bot(repeat=10*60)
+                # run_music_scrape_bot(repeat=10*60)
             else:
                 idle_log = Log(log_details=f"The Bot is now Idle ")
                 idle_log.save()
@@ -77,6 +77,40 @@ def get_logs(request):
         {
             "recent_logs": recent_log_data,
             "all_logs": all_log_data
+        },
+        safe=False
+    )
+
+
+def get_songs(request):
+    all_songs = Song.objects.all()
+    new_songs = all_songs[:5]
+
+    # Data for recent logs
+    new_songs_data = [
+        {
+            "counter": idx + 1,
+            "title": title,
+            "artist": artist,
+            "link": link
+        }
+        for idx, title, artist, link in enumerate(new_songs)
+    ]
+
+    # Data for all logs
+    all_songs_data = [
+        {
+            "counter": idx + 1,
+            "title": title,
+            "artist": artist,
+            "link": link
+        }
+        for idx, title, artist, link in enumerate(all_songs)
+    ]
+    return JsonResponse(
+        {
+            "recent_logs": new_songs_data,
+            "all_logs": all_songs_data
         },
         safe=False
     )

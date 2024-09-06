@@ -8,6 +8,7 @@
     <link type="text/css" href="{% static 'styles/style.css' %}" rel="stylesheet" />
     <link type="text/css" href="{% static 'styles/switch.css' %}" rel="stylesheet" />
     <link type="text/css" href="{% static 'styles/auth.css' %}" rel="stylesheet" />
+    <link type="text/css" href="{% static 'styles/music.css' %}" rel="stylesheet" />
     <link type="x-icon" href="{% static 'img/bot.ico' %}" rel="icon" />
 
 
@@ -145,20 +146,36 @@
                     <div class="logs-container">
 
                         <div>
-                            <h3>Accounts</h3>
+                            <h3>Top songs</h3>
                         </div>
 
-                        <form >
-                            {% csrf_token %}
-                            <input type="hidden" name="form_type" value="accounts_form">
-                            {% for account in accounts %}
-                                <div>
-                                    <input name="email_{{ account.id }}" value="{{ account.email }}" type="text" placeholder="Email" required />
-                                    <input name="password_{{ account.id }}" value="{{ account.password }}" type="password" placeholder="Passkey" required />
-                                </div>
-                            {% endfor %}
-                            <button disabled name="update" style="width: 120px; cursor:not-allowed">Update</button>
-                        </form>
+                        <div class="music-container" id="songsContainer">
+
+                            <ol>
+                                {% for song in songs %}
+                                <li>
+                                    <div class="music-tab">
+                                        <div class="image-text-container">
+                                            <div class="music-image">
+                                                <img src="{% static 'img/album.svg' %}" />
+                                            </div>
+                                            <div class="music-details">
+                                                <p>{{ song.title }}</p>
+                                                <h4>{{ song.artist}}</h4>
+                                            </div>
+                                        </div>
+                                        <a href="{{ song.download_link }}" target="_blank">
+                                            <div class="icn-box small">
+                                                <img src="{% static 'img/download.svg' %}" />
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ol>
+                                
+                            
+                        </div>
 
                     </div>
                 </div>
@@ -206,6 +223,7 @@
 
 
     <script language="javascript" src="{% static 'js/fetch_logs.js' %}"></script>
+    <script language="javascript" src="{% static 'js/fetch_songs.js' %}"></script>
 
 
     <script>
