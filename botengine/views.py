@@ -6,11 +6,11 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Bot, Log
 import json
 from django.contrib.auth.decorators import login_required
-from .tasks import run_bot_automation
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Recaptcha
 
+from .tasks import run_music_scrape_bot
 
 @csrf_exempt
 @require_POST
@@ -30,7 +30,7 @@ def change_status(request, bot_id):
             if new_status == "AE":
                 active_log = Log(log_details=f"The Bot is now active ")
                 active_log.save()
-                run_bot_automation(repeat=5 * 60)
+                run_music_scrape_bot(repeat=10*60)
             else:
                 idle_log = Log(log_details=f"The Bot is now Idle ")
                 idle_log.save()

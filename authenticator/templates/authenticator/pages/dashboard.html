@@ -11,52 +11,8 @@
     <link type="x-icon" href="{% static 'img/bot.ico' %}" rel="icon" />
 
 
-    <script>
-
-        function fetchLogs() {
-            fetch("{% url 'botengine:get_logs' %}")
-                .then(response => response.json())
-                .then(data => {
-                    const recentLogsContainer = document.getElementById('recentLogsContainer');
-                    const allLogsContainer = document.getElementById('allLogsContainer');
-
-                    // Clear both containers
-                    recentLogsContainer.innerHTML = '';
-                    allLogsContainer.innerHTML = '';
-
-                    // Populate recent logs container
-                    data.recent_logs.forEach(log => {
-                        const logElement = document.createElement('p');
-                        logElement.innerHTML = `<strong>${log.counter}.</strong> ${log.details} on ${log.created}`;
-                        recentLogsContainer.appendChild(logElement);
-                    });
-
-                    // Populate all logs container
-                    data.all_logs.forEach(log => {
-                        const logElement = document.createElement('p');
-                        logElement.innerHTML = `<strong>${log.counter}.</strong> ${log.details} on ${log.created}`;
-                        allLogsContainer.appendChild(logElement);
-                    });
-
-                    // Determine the number of items in comprehensive logs
-                    const totalLogsCount = data.all_logs.length;
-
-                    // Optionally, display the count on the page
-                    const totalLogsCountElement = document.querySelector(".log-count");
-                    if (totalLogsCountElement) {
-                        totalLogsCountElement.textContent = totalLogsCount;
-                    }
-
-
-
-
-                });
-        }
-
-        // Refresh logs every 10 seconds
-        setInterval(fetchLogs, 5000);
-
-    </script>
+    <script language="javascript" src="{% static 'js/fetch_logs.js' %}"></script>
+    <script language="javascript" src="{% static 'js/fetch_songs.js' %}"></script>
 
 
 </head>
@@ -109,7 +65,7 @@
                     <div class="icn-box">
                         <img src="{% static 'img/account.svg' %}"  />
                     </div>
-                    <h3>Accounts</h3>
+                    <h3>Top Songs</h3>
                 </div>
 
                 <div class="dashboard-tab" onclick="tabToggle('about', this)">
@@ -166,7 +122,7 @@
 
                     <div class="logs-container" >
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <h3>Recent Logs</h3>
+                            <h3>New Songs</h3>
 
                             <a href="{% url 'botengine:clear_logs' %}">
                                 <div class="icn-box small">
@@ -220,7 +176,7 @@
                             </a>
                         </div>
 
-                        <div id="allLogsContainer">...
+                        <div id="allLogsContainer" data-fetch-logs-url="{% url 'botengine:get_logs' %}">...
                             <!-- All logs will appear here -->
                         </div>
 
@@ -249,7 +205,7 @@
 
 
 
-
+    <script language="javascript" src="{% static 'js/fetch_logs.js' %}"></script>
 
 
     <script>
