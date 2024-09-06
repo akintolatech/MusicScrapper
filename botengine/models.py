@@ -3,6 +3,25 @@ from django.db import models
 
 # Create your models here.
 
+class Song(models.Model):
+    title = models.CharField(max_length=255)
+    artist = models.CharField(max_length=255)
+    download_link = models.CharField(max_length=2000, blank=True)
+
+    # class Status(models.TextChoices):
+    #     ACTIVE = "AE", "Active"
+    #     IDLE = "IE", "Idle"
+    #
+    # status = models.CharField(
+    #     max_length=2,
+    #     choices=Status,
+    #     default=Status.IDLE
+    # )
+
+    def __str__(self):
+        return self.title
+
+
 class Recaptcha(models.Model):
     site_key = models.CharField(max_length=255)
     token = models.CharField(max_length=1024, blank=True, null=True)
@@ -29,7 +48,6 @@ class Bot(models.Model):
 
 
 class Log(models.Model):
-
     log_details = models.CharField(max_length=1000)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -41,7 +59,6 @@ class Log(models.Model):
 
 
 class Account(models.Model):
-
     email = models.CharField(max_length=500)
     password = models.CharField(max_length=33)
 
