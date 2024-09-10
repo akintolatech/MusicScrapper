@@ -120,19 +120,20 @@
                             <h2>{{ bot.successful_bookings }}</h2>
                         </div>
                     </div>
-
+                    
+                    <!-- New songs -->
                     <div class="logs-container" >
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <h3>New Songs</h3>
 
-                            <a href="{% url 'botengine:clear_logs' %}">
+                            <!-- <a href="{% url 'botengine:clear_logs' %}">
                                 <div class="icn-box small">
                                     <img src="{% static 'img/x.svg' %}" />
                                 </div>
-                            </a>
+                            </a> -->
                         </div>
 
-                        <div id="recentLogsContainer">...
+                        <div id="recentSongsContainer">...
                             <!-- Recent logs will appear here -->
                         </div>
 
@@ -140,7 +141,7 @@
 
                 </div>
 
-                <!-- Accounts section -->
+                <!-- Top Songs section -->
                 <div id="accounts" class="tabcontent">
                     <!-- Comprehensive logs -->
                     <div class="logs-container">
@@ -149,29 +150,29 @@
                             <h3>Top songs</h3>
                         </div>
 
-                        <div class="music-container" id="songsContainer">
+                        <div class="music-container" id="allSongsContainer" data-fetch-logs-url="{% url 'botengine:get_songs' %}">
 
                             <ol>
-                                {% for song in songs %}
+                                
                                 <li>
-                                    <div class="music-tab">
+                                    <!-- <div class="music-tab">
                                         <div class="image-text-container">
                                             <div class="music-image">
                                                 <img src="{% static 'img/album.svg' %}" />
                                             </div>
                                             <div class="music-details">
-                                                <p>{{ song.title }}</p>
-                                                <h4>{{ song.artist}}</h4>
+                                                <p>...</p>
+                                                <h4>...</h4>
                                             </div>
                                         </div>
-                                        <a href="{{ song.download_link }}" target="_blank">
+                                        <a href="..." target="_blank">
                                             <div class="icn-box small">
                                                 <img src="{% static 'img/download.svg' %}" />
                                             </div>
                                         </a>
-                                    </div>
+                                    </div> -->
                                 </li>
-                                {% endfor %}
+                               
                             </ol>
                                 
                             
@@ -180,7 +181,7 @@
                     </div>
                 </div>
 
-                <!-- Comprehensive logs section -->
+                <!-- Data logs section -->
                 <div id="about" class="tabcontent">
                     <div class="logs-container">
                         <div style="display: flex; justify-content: space-between; align-items: center;">

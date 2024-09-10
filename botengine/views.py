@@ -56,16 +56,16 @@ def clear_logs(request):
 # Get logs every 5 seconds woth Js fetch request
 def get_logs(request):
     logs = Log.objects.all()
-    recent_logs = logs[:5]
+    # recent_logs = logs[:5]
 
     # Data for recent logs
-    recent_log_data = [
-        {
-            "counter": idx + 1, "details": log.log_details,
-            "created": log.created.strftime('%Y-%m-%d %H:%M:%S')
-        }
-        for idx, log in enumerate(recent_logs)
-    ]
+    # recent_log_data = [
+    #     {
+    #         "counter": idx + 1, "details": log.log_details,
+    #         "created": log.created.strftime('%Y-%m-%d %H:%M:%S')
+    #     }
+    #     for idx, log in enumerate(recent_logs)
+    # ]
 
     # Data for all logs
     all_log_data = [
@@ -75,7 +75,6 @@ def get_logs(request):
 
     return JsonResponse(
         {
-            "recent_logs": recent_log_data,
             "all_logs": all_log_data
         },
         safe=False
@@ -90,27 +89,28 @@ def get_songs(request):
     new_songs_data = [
         {
             "counter": idx + 1,
-            "title": title,
-            "artist": artist,
-            "link": link
+            "title": song.title,
+            "artist": song.artist,
+            "link": song.download_link
         }
-        for idx, title, artist, link in enumerate(new_songs)
+        for idx, song in enumerate(new_songs)
     ]
 
     # Data for all logs
-    all_songs_data = [
-        {
-            "counter": idx + 1,
-            "title": title,
-            "artist": artist,
-            "link": link
-        }
-        for idx, title, artist, link in enumerate(all_songs)
-    ]
+    # all_songs_data = [
+    #     {
+    #         # "counter": idx + 1,
+    #         "title": title,
+    #         "artist": artist,
+    #         "link": link,
+    #     }
+    #     for title, artist, link in enumerate(all_songs)
+    # ]
+
     return JsonResponse(
         {
-            "recent_logs": new_songs_data,
-            "all_logs": all_songs_data
+            "recent_songs": new_songs_data,
+            # "all_songs": all_songs_data
         },
         safe=False
     )
