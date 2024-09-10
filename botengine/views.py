@@ -82,6 +82,7 @@ def get_logs(request):
 
 
 def get_songs(request):
+    # Get all songs from the database
     all_songs = Song.objects.all()
     new_songs = all_songs[:5]
 
