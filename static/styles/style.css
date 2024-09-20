@@ -234,3 +234,7 @@ a {
     display: none;
     /* color: #fff7ff1f; */
 }
+
+.recentSongsContainer {
+    overflow: hidden;
+}

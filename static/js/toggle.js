@@ -12,12 +12,12 @@ function Toggle() {
 
         hamNav.className += " active";
         sideItem.className += " active";
-        hamIcon.src = "../img/ham-open.svg"
+        hamIcon.src = "../../../../static/img/ham-open.svg"
 
     }else {
         hamNav.className = "ham-nav";
         sideItem.className = "sidebar-item";
-         hamIcon.src = "../img/ham-close.svg"
+         hamIcon.src = "../../../../static/img/ham-close.svg"
     }
     
 }

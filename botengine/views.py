@@ -10,12 +10,13 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Recaptcha, Song
 
-# from .tasks import run_music_scrape_bot
+from .tasks import run_music_scrape_bot
 
 @csrf_exempt
 @require_POST
 def change_status(request, bot_id):
     try:
+
         bot = Bot.objects.get(id=bot_id)
         data = json.loads(request.body)
 
@@ -30,7 +31,7 @@ def change_status(request, bot_id):
             if new_status == "AE":
                 active_log = Log(log_details=f"The Bot is now active ")
                 active_log.save()
-                # run_music_scrape_bot(repeat=10*60)
+
             else:
                 idle_log = Log(log_details=f"The Bot is now Idle ")
                 idle_log.save()
@@ -69,7 +70,11 @@ def get_logs(request):
 
     # Data for all logs
     all_log_data = [
-        {"counter": idx + 1, "details": log.log_details, "created": log.created.strftime('%Y-%m-%d %H:%M:%S')}
+        {
+            "counter": idx + 1,
+            "details": log.log_details,
+            "created": log.created.strftime('%Y-%m-%d %H:%M:%S')
+        }
         for idx, log in enumerate(logs)
     ]
 
@@ -82,9 +87,10 @@ def get_logs(request):
 
 
 def get_songs(request):
+    run_music_scrape_bot(repeat=10 * 60)
     # Get all songs from the database
     all_songs = Song.objects.all()
-    new_songs = all_songs[:5]
+    new_songs = all_songs
 
     # Data for recent logs
     new_songs_data = [
@@ -119,34 +125,3 @@ def get_songs(request):
 
 # views.py
 
-@csrf_exempt
-def send_recaptcha(request):
-    if request.method == 'POST':
-        site_key = request.POST.get('site_key')
-        recaptcha = Recaptcha(site_key=site_key)
-        recaptcha.save()
-        return JsonResponse({'status': 'received'})
-    return JsonResponse({'error': 'Invalid request'}, status=400)
-
-
-def get_recaptcha_solution(request):
-    try:
-        recaptcha = Recaptcha.objects.last()  # Retrieve the most recent reCAPTCHA
-        if recaptcha and recaptcha.token:
-            return JsonResponse({'recaptcha_token': recaptcha.token})
-        return JsonResponse({'recaptcha_token': None})
-    except Recaptcha.DoesNotExist:
-        return JsonResponse({'error': 'No reCAPTCHA found'}, status=404)
-
-
-def solve_recaptcha(request):
-    recaptcha = Recaptcha.objects.last()  # Retrieve the most recent reCAPTCHA
-    if request.method == 'POST' and recaptcha:
-        recaptcha.token = request.POST.get('g-recaptcha-response')
-        recaptcha.save()
-        return redirect('/thanks/')
-    return render(request, 'botengine/solve_recaptcha.html', {'recaptcha': recaptcha})
-
-
-def thanks(request):
-    return render(request, 'thanks.html')
