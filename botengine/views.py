@@ -10,7 +10,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Recaptcha, Song
 
-from .tasks import run_music_scrape_bot
+# from .tasks import run_music_scrape_bot
 
 @csrf_exempt
 @require_POST
@@ -87,7 +87,7 @@ def get_logs(request):
 
 
 def get_songs(request):
-    run_music_scrape_bot(repeat=10 * 60)
+    # run_music_scrape_bot(repeat=10 * 60)
     # Get all songs from the database
     all_songs = Song.objects.all()
     new_songs = all_songs
