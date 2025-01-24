@@ -121,17 +121,33 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <h3>New Songs</h3>
 
-                            <!-- <a href="{% url 'botengine:clear_logs' %}">
+                            <a href="{% url 'botengine:clear_logs' %}">
                                 <div class="icn-box small">
                                     <img src="{% static 'img/x.svg' %}" />
                                 </div>
-                            </a> -->
+                            </a>
                         </div>
 
                         <div id="recentSongsContainer">...
                             <!-- Recent logs will appear here -->
+
                         </div>
 
+
+                        <div class="song_tab">
+
+                            <div class="song_album">
+                                <img src="{% static 'img/x.svg' %}" />
+                            </div>
+
+                            <div class="song_detail">
+                                <h3>Asake</h3>
+                                <p>Skating</p>
+                            </div>
+
+                        </div>
+
+                   
                     </div>
 
                 </div>
@@ -208,58 +224,13 @@
 
 
     <script>
-        var fetchLogsUrl = "{% url 'botengine:get_logs' %}";  // Pass Django URL to JavaScript
+        var fetchLogsUrl = "{% url 'botengine:get_logs' %}";
+        var fetchSongsURL = "{% url 'botengine:get_songs' %}";
     </script>
 
     <script language="javascript" src="{% static 'js/fetch_logs.js' %}"></script>
+    <script language="javascript" src="{% static 'js/fetch_songs.js' %}"></script>
     
-    <!-- <script language="javascript" src="{% static 'js/fetch_songs.js' %}"></script> -->
-    
-    
-    <!-- <script>
-
-        function fetchLogs() {
-            fetch("{% url 'botengine:get_logs' %}")
-                .then(response => response.json())
-                .then(data => {
-                    const recentLogsContainer = document.getElementById('recentLogsContainer');
-                    const allLogsContainer = document.getElementById('allLogsContainer');
-
-                    // Clear both containers
-                    recentLogsContainer.innerHTML = '';
-                    allLogsContainer.innerHTML = '';
-
-                    // Populate recent logs container
-                    // data.recent_logs.forEach(log => {
-                    //     const logElement = document.createElement('p');
-                    //     logElement.innerHTML = `<strong>${log.counter}.</strong> ${log.details} on ${log.created}`;
-                    //     recentLogsContainer.appendChild(logElement);
-                    // });
-
-                    // Populate all logs container
-                    data.all_logs.forEach(log => {
-                        const logElement = document.createElement('p');
-                        logElement.innerHTML = `<strong>${log.counter}.</strong> ${log.details} on ${log.created}`;
-                        allLogsContainer.appendChild(logElement);
-                    });
-
-                    // Determine the number of items in comprehensive logs
-                    const totalLogsCount = data.all_logs.length;
-
-                    // Optionally, display the count on the page
-                    const totalLogsCountElement = document.querySelector(".log-count");
-                    if (totalLogsCountElement) {
-                        totalLogsCountElement.textContent = totalLogsCount;
-                    }
-                });
-        }
-
-        // Refresh logs every 10 seconds
-        setInterval(fetchLogs, 5000);
-
-    </script>
-     -->
-
 
 
     <script>

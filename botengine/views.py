@@ -86,42 +86,75 @@ def get_logs(request):
         safe=False
     )
 
-
 def get_songs(request):
-    # run_music_scrape_bot(repeat=10 * 60)
     # Get all songs from the database
-    all_songs = Song.objects.all()
-    new_songs = all_songs
+    all_songs = Song.objects.all().order_by('-id')  # Optional: Sort by newest first
 
-    # Data for recent logs
-    new_songs_data = [
+    # Data for recent songs (you can modify this to return the last N songs if needed)
+    recent_songs_data = [
         {
             "counter": idx + 1,
             "title": song.title,
             "artist": song.artist,
             "link": song.download_link
         }
-        for idx, song in enumerate(new_songs)
+        for idx, song in enumerate(all_songs[:10])  # Adjust number if needed
     ]
 
-    # Data for all logs
-    # all_songs_data = [
-    #     {
-    #         # "counter": idx + 1,
-    #         "title": title,
-    #         "artist": artist,
-    #         "link": link,
-    #     }
-    #     for title, artist, link in enumerate(all_songs)
-    # ]
+    # Data for all songs
+    all_songs_data = [
+        {
+            "counter": idx + 1,
+            "title": song.title,
+            "artist": song.artist,
+            "link": song.download_link,
+        }
+        for idx, song in enumerate(all_songs)
+    ]
 
     return JsonResponse(
         {
-            "recent_songs": new_songs_data,
-            # "all_songs": all_songs_data
+            "recent_songs": recent_songs_data,
+            "all_songs": all_songs_data
         },
         safe=False
     )
+
+# def get_songs(request):
+#     # run_music_scrape_bot(repeat=10 * 60)
+#     # Get all songs from the database
+#     all_songs = Song.objects.all()
+#     new_songs = all_songs
+#
+#     # Data for recent logs
+#     new_songs_data = [
+#         {
+#             "counter": idx + 1,
+#             "title": song.title,
+#             "artist": song.artist,
+#             "link": song.download_link
+#         }
+#         for idx, song in enumerate(new_songs)
+#     ]
+#
+#     # Data for all logs
+#     all_songs_data = [
+#         {
+#             # "counter": idx + 1,
+#             "title": title,
+#             "artist": artist,
+#             "link": link,
+#         }
+#         for title, artist, link in enumerate(all_songs)
+#     ]
+#
+#     return JsonResponse(
+#         {
+#             "recent_songs": new_songs_data,
+#             "all_songs": all_songs_data
+#         },
+#         safe=False
+#     )
 
 
 # views.py

@@ -238,3 +238,30 @@ a {
 .recentSongsContainer {
     overflow: hidden;
 }
+
+.song_tab {
+    width: 100%;
+    /* height: 60px; */
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+}
+
+.song_album {
+    width: 44px;
+    height: 44px;
+    margin-right: 12px;
+    border: 1px solid red;
+}
+
+.song_album img{
+    width: 100%;
+    height: 100%;
+}
+
+.song_detail > * {
+    margin: 0;
+    padding: 0;
+}
