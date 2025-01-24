@@ -178,6 +178,10 @@
                             </a>
                         </div>
 
+                        <div id="recentLogsContainer" data-fetch-logs-url="{% url 'botengine:get_logs' %}">...
+                            <!-- All logs will appear here -->
+                        </div>
+
                         <div id="allLogsContainer" data-fetch-logs-url="{% url 'botengine:get_logs' %}">...
                             <!-- All logs will appear here -->
                         </div>
@@ -211,7 +215,7 @@
 
     <script language="javascript" src="{% static 'js/fetch_logs.js' %}"></script>
     
-    <script>
+    <!-- <script>
 
         function fetchLogs() {
             fetch("{% url 'botengine:get_logs' %}")
@@ -225,11 +229,11 @@
                     allLogsContainer.innerHTML = '';
 
                     // Populate recent logs container
-                    data.recent_logs.forEach(log => {
-                        const logElement = document.createElement('p');
-                        logElement.innerHTML = `<strong>${log.counter}.</strong> ${log.details} on ${log.created}`;
-                        recentLogsContainer.appendChild(logElement);
-                    });
+                    // data.recent_logs.forEach(log => {
+                    //     const logElement = document.createElement('p');
+                    //     logElement.innerHTML = `<strong>${log.counter}.</strong> ${log.details} on ${log.created}`;
+                    //     recentLogsContainer.appendChild(logElement);
+                    // });
 
                     // Populate all logs container
                     data.all_logs.forEach(log => {
@@ -253,7 +257,7 @@
         setInterval(fetchLogs, 5000);
 
     </script>
-    
+     -->
     <script language="javascript" src="{% static 'js/fetch_songs.js' %}"></script>
 
 
