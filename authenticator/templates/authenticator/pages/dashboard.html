@@ -11,11 +11,6 @@
     <link type="text/css" href="{% static 'styles/music.css' %}" rel="stylesheet" />
     <link type="x-icon" href="{% static 'img/bot.ico' %}" rel="icon" />
 
-
-    <script language="javascript" src="{% static 'js/fetch_logs.js' %}"></script>
-    <script language="javascript" src="{% static 'js/fetch_songs.js' %}"></script>
-
-
 </head>
 <body>
 
@@ -212,8 +207,14 @@
 
 
 
+    <script>
+        var fetchLogsUrl = "{% url 'botengine:get_logs' %}";  // Pass Django URL to JavaScript
+    </script>
 
     <script language="javascript" src="{% static 'js/fetch_logs.js' %}"></script>
+    
+    <!-- <script language="javascript" src="{% static 'js/fetch_songs.js' %}"></script> -->
+    
     
     <!-- <script>
 
@@ -258,7 +259,7 @@
 
     </script>
      -->
-    <script language="javascript" src="{% static 'js/fetch_songs.js' %}"></script>
+
 
 
     <script>

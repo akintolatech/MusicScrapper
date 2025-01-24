@@ -57,16 +57,16 @@ def clear_logs(request):
 # Get logs every 5 seconds woth Js fetch request
 def get_logs(request):
     logs = Log.objects.all()
-    # recent_logs = logs[:5]
+    recent_logs = logs[:5]
 
     # Data for recent logs
-    # recent_log_data = [
-    #     {
-    #         "counter": idx + 1, "details": log.log_details,
-    #         "created": log.created.strftime('%Y-%m-%d %H:%M:%S')
-    #     }
-    #     for idx, log in enumerate(recent_logs)
-    # ]
+    recent_log_data = [
+        {
+            "counter": idx + 1, "details": log.log_details,
+            "created": log.created.strftime('%Y-%m-%d %H:%M:%S')
+        }
+        for idx, log in enumerate(recent_logs)
+    ]
 
     # Data for all logs
     all_log_data = [
@@ -80,7 +80,8 @@ def get_logs(request):
 
     return JsonResponse(
         {
-            "all_logs": all_log_data
+            "all_logs": all_log_data,
+            "recent_logs": recent_log_data
         },
         safe=False
     )

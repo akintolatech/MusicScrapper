@@ -1,7 +1,5 @@
-
-
 function fetchLogs() {
-    fetch("{% url 'botengine:get_logs' %}")
+    fetch(fetchLogsUrl )
         .then(response => response.json())
         .then(data => {
             const recentLogsContainer = document.getElementById('recentLogsContainer');
@@ -38,4 +36,3 @@ function fetchLogs() {
 
 // Refresh logs every 10 seconds
 setInterval(fetchLogs, 5000);
-
