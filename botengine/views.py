@@ -88,7 +88,7 @@ def get_logs(request):
 
 def get_songs(request):
     # Get all songs from the database
-    all_songs = Song.objects.all().order_by('-id')  # Optional: Sort by newest first
+    all_songs = Song.objects.all().order_by('-id')
 
     # Data for recent songs (you can modify this to return the last N songs if needed)
     recent_songs_data = [
