@@ -81,7 +81,7 @@ def get_logs(request):
     return JsonResponse(
         {
             "all_logs": all_log_data,
-            "recent_logs": recent_log_data
+            # "recent_logs": recent_log_data
         },
         safe=False
     )

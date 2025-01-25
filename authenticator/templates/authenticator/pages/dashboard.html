@@ -73,9 +73,9 @@
 
                 <div class="dashboard-tab" onclick="tabToggle('projects', this)">
                     <div class="icn-box">
-                        <img src="{% static 'img/warn.svg' %}" />
+                        <img src="{% static 'img/settings.svg' %}" />
                     </div>
-                    <h3>Errata</h3>
+                    <h3>Settings</h3>
                 </div>
 
                 <a href="{% url 'authenticator:logout' %}">
@@ -133,21 +133,6 @@
 
                         </div>
 
-
-                        <div class="song_tab">
-
-                            <div class="song_album">
-                                <img src="{% static 'img/x.svg' %}" />
-                            </div>
-
-                            <div class="song_detail">
-                                <h3>Asake</h3>
-                                <p>Skating</p>
-                            </div>
-
-                        </div>
-
-                   
                     </div>
 
                 </div>
@@ -161,15 +146,8 @@
                             <h3>Top songs</h3>
                         </div>
 
-                        <div class="music-container" id="allSongsContainer" data-fetch-logs-url="{% url 'botengine:get_songs' %}">
-
-                            <ol>
-                                
-                            
-                               
-                            </ol>
-                                
-                            
+                        <div id="allSongsContainer" >
+                             <!--All songs are rendered here  -->
                         </div>
 
                     </div>
@@ -189,11 +167,11 @@
                             </a>
                         </div>
 
-                        <div id="recentLogsContainer" data-fetch-logs-url="{% url 'botengine:get_logs' %}">...
-                            <!-- All logs will appear here -->
-                        </div>
+                        <!-- <div id="recentLogsContainer" >...
+                        
+                        </div> -->
 
-                        <div id="allLogsContainer" data-fetch-logs-url="{% url 'botengine:get_logs' %}">...
+                        <div id="allLogsContainer">
                             <!-- All logs will appear here -->
                         </div>
 
@@ -226,7 +204,10 @@
     <script>
         var fetchLogsUrl = "{% url 'botengine:get_logs' %}";
         var fetchSongsURL = "{% url 'botengine:get_songs' %}";
+         var staticUrl = "{% static '' %}"; 
     </script>
+
+    
 
     <script language="javascript" src="{% static 'js/fetch_logs.js' %}"></script>
     <script language="javascript" src="{% static 'js/fetch_songs.js' %}"></script>

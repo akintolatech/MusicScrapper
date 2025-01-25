@@ -2,19 +2,19 @@ function fetchLogs() {
     fetch(fetchLogsUrl )
         .then(response => response.json())
         .then(data => {
-            const recentLogsContainer = document.getElementById('recentLogsContainer');
+            // const recentLogsContainer = document.getElementById('recentLogsContainer');
             const allLogsContainer = document.getElementById('allLogsContainer');
 
             // Clear both containers
-            recentLogsContainer.innerHTML = '';
+            // recentLogsContainer.innerHTML = '';
             allLogsContainer.innerHTML = '';
 
-            // Populate recent logs container
-            data.recent_logs.forEach(log => {
-                const logElement = document.createElement('p');
-                logElement.innerHTML = `<strong>${log.counter}.</strong> ${log.details} on ${log.created}`;
-                recentLogsContainer.appendChild(logElement);
-            });
+            // // Populate recent logs container
+            // data.recent_logs.forEach(log => {
+            //     const logElement = document.createElement('p');
+            //     logElement.innerHTML = `<strong>${log.counter}.</strong> ${log.details} on ${log.created}`;
+            //     recentLogsContainer.appendChild(logElement);
+            // });
 
             // Populate all logs container
             data.all_logs.forEach(log => {
