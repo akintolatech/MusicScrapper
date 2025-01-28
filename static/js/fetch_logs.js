@@ -26,7 +26,7 @@ function fetchLogs() {
             // Determine the number of items in comprehensive logs
             const totalLogsCount = data.all_logs.length;
 
-            // Optionally, display the count on the page
+            // Display the count on the page
             const totalLogsCountElement = document.querySelector(".log-count");
             if (totalLogsCountElement) {
                 totalLogsCountElement.textContent = totalLogsCount;

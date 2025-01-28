@@ -17,6 +17,7 @@ function fetchSongs() {
                 songElement.innerHTML = `
                     <div class="song_tab">
                         <div class="image_and_details">
+                            <strong style="margin-right: 16px;">${song.counter}.</strong>
                             <div class="song_album">
                                 <img src="${staticUrl}img/img.jpg" />
                             </div>
@@ -39,9 +40,10 @@ function fetchSongs() {
             data.all_songs.forEach(song => {
                 const songElement = document.createElement('div');
                 songElement.innerHTML = `
-                    <strong>${song.counter}.</strong>
+                    
                     <div class="song_tab">
                         <div class="image_and_details">
+                            <strong style="margin-right: 16px;">${song.counter}.</strong>
                             <div class="song_album">
                                 <img src="${staticUrl}img/img.jpg" />
                             </div>
@@ -64,7 +66,7 @@ function fetchSongs() {
             const totalSongsCount = data.all_songs.length;
 
             // Display the count on the page
-            const totalSongsCountElement = document.querySelector(".log-count");
+            const totalSongsCountElement = document.querySelector(".songs-count");
             if (totalSongsCountElement) {
                 totalSongsCountElement.textContent = totalSongsCount;
             }

@@ -107,8 +107,8 @@
 
                         </div>
                         <div class="status-tab">
-                            <h3>Successful Logins</h3>
-                            <h2>{{ bot.successful_logins }} times</h2>
+                            <h3>Total Songs</h3>
+                            <h2>{{ bot.successful_logins }} items</h2>
                         </div>
                         <div class="status-tab">
                             <h3>Successful Bookings</h3>
@@ -117,15 +117,16 @@
                     </div>
                     
                     <!-- New songs -->
-                    <div class="logs-container" >
+                    <div class="logs-container" style="height: 600px;" >
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <h3>New Songs</h3>
 
-                            <a href="{% url 'botengine:clear_logs' %}">
+                            <!-- <a href="{% url 'botengine:clear_logs' %}">
                                 <div class="icn-box small">
                                     <img src="{% static 'img/x.svg' %}" />
                                 </div>
-                            </a>
+                            </a> -->
+
                         </div>
 
                         <div id="recentSongsContainer">...
@@ -143,7 +144,7 @@
                     <div class="logs-container">
 
                         <div>
-                            <h3>Top songs</h3>
+                            <h3>Top songs (<b class="songs-count"></b>)</h3>
                         </div>
 
                         <div id="allSongsContainer" >
@@ -157,7 +158,7 @@
                 <div id="about" class="tabcontent">
                     <div class="logs-container">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <h3>Data Logs entries  (<b class="log-count">...</b>)</h3>
+                            <h3>Data Logs entries  (<b class="log-count"></b>)</h3>
 
                             <a href="{% url 'botengine:clear_logs' %}">
                                 <div class="icn-box small">
@@ -185,9 +186,9 @@
                     <!-- Comprehensive logs -->
                     <div class="logs-container">
                         <div>
-                            <h3>Errata</h3>
+                            <h3>Bot Settings</h3>
                         </div>
-                        <p>Errata</p>
+                        <p>Bot Setting Configuration</p>
                     </div>
                 </div>
 
