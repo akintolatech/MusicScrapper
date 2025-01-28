@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "authenticator.apps.AuthenticatorConfig",
     "botengine.apps.BotengineConfig",
-    'background_task',
+    # 'background_task',
 ]
 
 
